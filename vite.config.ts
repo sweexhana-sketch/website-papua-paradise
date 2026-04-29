@@ -109,4 +109,4 @@ export default defineConfig(({ isSsrBuild }) => ({
       clientFiles: ['./src/app/**/*', './src/app/root.tsx', './src/app/routes.ts'],
     },
   },
-});
+}));
