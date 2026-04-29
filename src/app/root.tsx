@@ -441,12 +441,13 @@ export function Layout({ children }: { children: ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
-        <script type="module" src="/src/__create/dev-error-overlay.js"></script>
         <link rel="icon" href="/src/__create/favicon.png" />
         {LoadFontsSSR ? <LoadFontsSSR /> : null}
       </head>
       <body>
-        <ClientOnly loader={() => children} />
+        <ErrorBoundaryWrapper>
+          {children}
+        </ErrorBoundaryWrapper>
         <Toaster position={isMobile ? 'top-center' : 'bottom-right'} />
         <ScrollRestoration />
         <Scripts />
