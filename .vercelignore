@@ -1,0 +1,11 @@
+node_modules
+.git
+.vercel
+.npmrc
+*.log
+build
+dist
+.react-router
+.vitest
+remove_bg.mjs
+src/data/logo/logo papua paradise.png

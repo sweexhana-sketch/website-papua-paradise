@@ -13,7 +13,7 @@ import { nextPublicProcessEnv } from './plugins/nextPublicProcessEnv';
 import { restart } from './plugins/restart';
 import { restartEnvFileChange } from './plugins/restartEnvFileChange';
 
-export default defineConfig({
+export default defineConfig(({ isSsrBuild }) => ({
   // Keep them available via import.meta.env.NEXT_PUBLIC_*
   envPrefix: 'NEXT_PUBLIC_',
   optimizeDeps: {
@@ -74,6 +74,15 @@ export default defineConfig({
       '@auth/create/react': '@hono/auth-js/react',
       '@auth/create': path.resolve(__dirname, './src/__create/@auth/create'),
       '@': path.resolve(__dirname, 'src'),
+      ...(isSsrBuild ? {
+        'pdfjs-dist': path.resolve(__dirname, 'src/empty.js'),
+        'three': path.resolve(__dirname, 'src/empty.js'),
+        '@imgly/background-removal-node': path.resolve(__dirname, 'src/empty.js'),
+        'onnxruntime-node': path.resolve(__dirname, 'src/empty.js'),
+        'sharp': path.resolve(__dirname, 'src/empty.js'),
+        'canvas': path.resolve(__dirname, 'src/empty.js'),
+        'jsdom': path.resolve(__dirname, 'src/empty.js'),
+      } : {})
     },
     dedupe: ['react', 'react-dom'],
   },
@@ -83,14 +92,7 @@ export default defineConfig({
   },
   ssr: {
     external: [
-      'argon2',
-      'pdfjs-dist',
-      'three',
-      '@imgly/background-removal-node',
-      'canvas',
-      'jsdom',
-      'onnxruntime-node',
-      'sharp'
+      'argon2'
     ]
   },
   server: {
