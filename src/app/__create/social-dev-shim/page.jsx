@@ -1,6 +1,6 @@
 'use client';
 
-import { signIn } from '@auth/create/react';
+import { signIn } from '@hono/auth-js/react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
