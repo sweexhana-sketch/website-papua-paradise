@@ -79,7 +79,19 @@ export default defineConfig({
   },
   clearScreen: false,
   build: {
-    target: 'esnext'
+    target: 'esnext',
+  },
+  ssr: {
+    external: [
+      'argon2',
+      'pdfjs-dist',
+      'three',
+      '@imgly/background-removal-node',
+      'canvas',
+      'jsdom',
+      'onnxruntime-node',
+      'sharp'
+    ]
   },
   server: {
     allowedHosts: true,
